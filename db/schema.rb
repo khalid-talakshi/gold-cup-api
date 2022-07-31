@@ -11,6 +11,15 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2022_07_31_025747) do
+  create_table "coaches", force: :cascade do |t|
+    t.integer "team_id", null: false
+    t.integer "person_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
+    t.index ["person_id"], name: "index_coaches_on_person_id"
+    t.index ["team_id"], name: "index_coaches_on_team_id"
+  end
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -103,6 +112,8 @@ ActiveRecord::Schema.define(version: 2022_07_31_025747) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "coaches", "people"
+  add_foreign_key "coaches", "teams"
   add_foreign_key "people", "users"
   add_foreign_key "players", "people"
   add_foreign_key "players", "teams"

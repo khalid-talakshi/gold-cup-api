@@ -6,6 +6,7 @@ class Person < ApplicationRecord
   has_one_attached :photo, dependent: :destroy
   has_one_attached :gov_id, dependent: :destroy
   has_many :players
+  has_many :coaches
 
   validates :first_name, presence: true
   validates :last_name, presence: true
